@@ -155,7 +155,7 @@ class SlomanLogger:
         # This method was inspired by the answers to Stack Overflow post
         # http://stackoverflow.com/q/2183233/2988730, especially
         # http://stackoverflow.com/a/13638084/2988730
-        def log_for_level(self, message: str, *args: tuple[any], **kwargs: dict[str, any]) -> None:  # noqa: ANN001
+        def log_for_level(self: "logging.Logger", message: str, *args: tuple[any], **kwargs: dict[str, any]) -> None:
             """Log for level wrapper."""
             if self.isEnabledFor(num):
                 self._log(num, message, args, **kwargs)
