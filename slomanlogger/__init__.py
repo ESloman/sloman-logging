@@ -13,6 +13,8 @@ Example:
 
 """
 
+__version__ = "0.0.0"
+
 import logging
 import sys
 from logging import FileHandler, LogRecord

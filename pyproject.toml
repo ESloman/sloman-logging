@@ -1,22 +1,16 @@
 [build-system]
-requires = ["setuptools >= 61.0"]
+requires = ["setuptools>=61.0.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "sloman-logging"
 version = "0.0.0"
 authors = [
-    { name = "Elliot Sloman", email= "elliot.sloman@hotmail.com" }
+    { name = "Elliot Sloman", email = "elliot.sloman@hotmail.com" }
 ]
 description = "General purpose logger that wraps Python logger functionality."
-keywords = [ "logging", ]
 readme = "README.md"
 license = {file = "LICENSE"}
-packages = [
-    { include = "slomanlogger", from = "src" },
-]
-
-repository = "https://github.com/ESloman/sloman-logging"
 
 classifiers = [
   "Programming Language :: Python :: 3",
@@ -24,19 +18,15 @@ classifiers = [
   "Programming Language :: Python :: 3.9",
   "Programming Language :: Python :: 3.10",
   "Programming Language :: Python :: 3.11",
-  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.12"
 ]
 
-requires-python = ">= 3.8"
-dependencies = []
+requires-python = ">=3.12"
+
+dependencies = ["logging"]
 
 [project.optional-dependencies]
-dev = [
-  "pre-commit",
-  "ruff",
-  "pytest",
-  "pytest-cov"
-]
+dev = ["pre-commit", "ruff", "pytest", "pytest-cov"]
 
 [project.urls]
 Repository = "https://github.com/ESloman/sloman-logging.git"
@@ -68,7 +58,12 @@ allow_zero_version = true
 tag_format = "v{version}"
 upload_to_pypi = false
 upload_to_release = true
-build_command = "poetry install --without test,docs,dev && "
+build_command = """
+    python -m pip install build~=0.10.0
+    python -m build .
+"""
+version_variables = ["slomanlogger/__init__.py:__version__"]
+version_toml = ["pyproject.toml:project.version"]
 
 [tool.semantic_release.branches.main]
 match = "main"
