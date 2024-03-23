@@ -71,6 +71,7 @@ class SlomanLogger:
             if not hasattr(logging, "TRACE"):
                 self.add_logging_level("TRACE", LEVEL_TRACE)
             self._logger = self._setup_logger(name, level, output_file)
+
         self.name = name
 
     @property
