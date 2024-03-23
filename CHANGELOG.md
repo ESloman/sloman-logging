@@ -1,6 +1,30 @@
 # CHANGELOG
 
+## v0.2.0-beta.1 (2024-03-23)
 
+### Build
+
+* build: remove logging dependency ([`9476d5a`](https://github.com/ESloman/sloman-logging/commit/9476d5a7462a86fd84a05d11fbd70f7cccd3032b))
+
+### Ci
+
+* ci: rely purely on pytest-cov ([`4f163ad`](https://github.com/ESloman/sloman-logging/commit/4f163add36a95526dd2d6b1acec563e75eb4de23))
+
+* ci: add coverage config ([`c680a1c`](https://github.com/ESloman/sloman-logging/commit/c680a1c2a7e9fe56020979f7fa5794eac9bb9a7d))
+
+* ci: update semantic env ([`50e92bc`](https://github.com/ESloman/sloman-logging/commit/50e92bcd4f4d10931ecaad4449ae7716e2a2a06e))
+
+### Documentation
+
+* docs: add more to README.md ([`c0d3443`](https://github.com/ESloman/sloman-logging/commit/c0d3443ae3900abd6cc13571bffb08219a8d3eae))
+
+### Feature
+
+* feat: make sure that adding another logging method works properly ([`2049f33`](https://github.com/ESloman/sloman-logging/commit/2049f33984e42677fd1893b52691c1d96500ca77))
+
+### Test
+
+* test: add some additional tests ([`71ec5fb`](https://github.com/ESloman/sloman-logging/commit/71ec5fbbcaa306b2d32bdcd74e1b68862cf352cb))
 
 ## v0.1.0 (2024-03-22)
 
