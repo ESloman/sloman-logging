@@ -1,6 +1,19 @@
 # CHANGELOG
 
-## v0.2.0-beta.1 (2024-03-23)
+
+
+## v0.2.0 (2024-03-23)
+
+### Unknown
+
+* Merge pull request #2 from ESloman/develop
+
+feat: add new logger method to SlomanLogger cls ([`d500351`](https://github.com/ESloman/sloman-logging/commit/d500351e2bf3add9f6ffa5e05d0676cc72934d5e))
+
+* Merge branch &#39;main&#39; into develop ([`6224808`](https://github.com/ESloman/sloman-logging/commit/622480865fbd11390f65675ecf90313bc48b6908))
+
+
+## v0.1.0-beta.3 (2024-03-23)
 
 ### Build
 
@@ -25,6 +38,7 @@
 ### Test
 
 * test: add some additional tests ([`71ec5fb`](https://github.com/ESloman/sloman-logging/commit/71ec5fbbcaa306b2d32bdcd74e1b68862cf352cb))
+
 
 ## v0.1.0 (2024-03-22)
 
