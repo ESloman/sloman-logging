@@ -1,8 +1,6 @@
 # CHANGELOG
 
-
-
-## v0.1.0-beta.3 (2024-03-23)
+## v0.2.0-beta.1 (2024-03-23)
 
 ### Build
 
@@ -27,6 +25,12 @@
 ### Test
 
 * test: add some additional tests ([`71ec5fb`](https://github.com/ESloman/sloman-logging/commit/71ec5fbbcaa306b2d32bdcd74e1b68862cf352cb))
+
+## v0.1.0 (2024-03-22)
+
+### Feature
+
+* feat: merge functionality into main ([`e2d0cc1`](https://github.com/ESloman/sloman-logging/commit/e2d0cc165591cff1a312121ec29922732746fedb))
 
 ### Unknown
 

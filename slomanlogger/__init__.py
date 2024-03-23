@@ -13,7 +13,7 @@ Example:
 
 """
 
-__version__ = "0.1.0-beta.3"
+__version__ = "v0.2.0-beta.1"
 
 import logging
 import sys
