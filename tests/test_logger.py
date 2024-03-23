@@ -46,3 +46,13 @@ class TestSlomanLogger:
         for name, level in [("VERBOSE", LEVEL_VERBOSE), ("TRACE", LEVEL_TRACE)]:
             with pytest.raises(AttributeError):
                 logger.add_logging_level(name, level)
+
+    @staticmethod
+    def test_add_another_level() -> None:
+        """Tests trying to add another level."""
+        logger = SlomanLogger("verboseverbose", level=0)
+        logger.add_logging_level("SUPER_VERBOSE", 0, "super_verbose")
+        # test that our underlying logger object has right attribute attached
+        logger.logger.super_verbose("Test superverbose")
+        # test that our SlomanLogger class has the right attribute attached
+        logger.super_verbose("Test superverbose")

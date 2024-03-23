@@ -165,10 +165,15 @@ class SlomanLogger:
             """Log to root wrapper."""
             logging.log(num, message, *args, **kwargs)
 
+        def cls_log(self: "SlomanLogger", message: str, *args: tuple[any], **kwargs: dict[str, any]) -> None:
+            """Logging method for SlomanLogger that's named after the method name."""
+            getattr(self.logger, method_name)(message, *args, stacklevel=3, **kwargs)
+
         logging.addLevelName(num, name)
         setattr(logging, name, num)
         setattr(logging.getLoggerClass(), method_name, log_for_level)
         setattr(logging, method_name, log_to_root)
+        setattr(SlomanLogger, method_name, cls_log)
 
     def info(self, message: str, *args: tuple[any], **kwargs: dict[str, any]) -> None:
         """logging.Logger.info wrapper.
