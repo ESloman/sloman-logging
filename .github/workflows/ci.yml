@@ -36,9 +36,7 @@ jobs:
           python -m pip install pytest-github-actions-annotate-failures
       - name: pytest
         run: |
-          python -m pytest --cov=. --cov-branch --durations=10
-          python -m coverage report --omit=tests/*
-          python -m coverage xml --omit=tests/*
+          python -m pytest --cov=. --cov-report xml --cov-branch
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master
         env:
