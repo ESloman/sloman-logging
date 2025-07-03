@@ -1,7 +1,5 @@
 # CHANGELOG
 
-
-
 ## v0.2.0 (2024-03-23)
 
 ### Unknown
@@ -11,7 +9,6 @@
 feat: add new logger method to SlomanLogger cls ([`d500351`](https://github.com/ESloman/sloman-logging/commit/d500351e2bf3add9f6ffa5e05d0676cc72934d5e))
 
 * Merge branch &#39;main&#39; into develop ([`6224808`](https://github.com/ESloman/sloman-logging/commit/622480865fbd11390f65675ecf90313bc48b6908))
-
 
 ## v0.1.0-beta.3 (2024-03-23)
 
@@ -39,7 +36,6 @@ feat: add new logger method to SlomanLogger cls ([`d500351`](https://github.com/
 
 * test: add some additional tests ([`71ec5fb`](https://github.com/ESloman/sloman-logging/commit/71ec5fbbcaa306b2d32bdcd74e1b68862cf352cb))
 
-
 ## v0.1.0 (2024-03-22)
 
 ### Feature
@@ -48,8 +44,7 @@ feat: add new logger method to SlomanLogger cls ([`d500351`](https://github.com/
 
 ### Unknown
 
-* Merge branch &#39;develop&#39; of https://github.com/ESloman/sloman-logging into develop ([`aa42e64`](https://github.com/ESloman/sloman-logging/commit/aa42e641109abf9f346915b3834cee4cbf858a03))
-
+* Merge branch &#39;develop&#39; of <https://github.com/ESloman/sloman-logging> into develop ([`aa42e64`](https://github.com/ESloman/sloman-logging/commit/aa42e641109abf9f346915b3834cee4cbf858a03))
 
 ## v0.1.0-beta.2 (2024-03-22)
 
@@ -69,8 +64,7 @@ feat: add new logger method to SlomanLogger cls ([`d500351`](https://github.com/
 
 ### Unknown
 
-* Merge branch &#39;develop&#39; of https://github.com/ESloman/sloman-logging into develop ([`aeab4a8`](https://github.com/ESloman/sloman-logging/commit/aeab4a82eafb42f0db5ad043f0c4e61a8a0da32e))
-
+* Merge branch &#39;develop&#39; of <https://github.com/ESloman/sloman-logging> into develop ([`aeab4a8`](https://github.com/ESloman/sloman-logging/commit/aeab4a82eafb42f0db5ad043f0c4e61a8a0da32e))
 
 ## v0.1.0-beta.1 (2024-03-22)
 

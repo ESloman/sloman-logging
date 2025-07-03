@@ -49,20 +49,33 @@ class SlomanLogger:
     _instance: "SlomanLogger" = None
     _logger: logging.Logger = None
 
-    def __new__(cls, *args: tuple[any], **_: dict[str, any]) -> "SlomanLogger":
+    def __new__(cls, *args: tuple[any], **kwargs: dict[str, any]) -> "SlomanLogger":
         """Ensures we only create one instance of this class for each logger name."""
-        if cls._instance is None or (cls._instance.logger is not None and cls._instance.logger.name != args[0]):
+        if cls._instance is None:
             cls._instance = super().__new__(cls)
+            return cls._instance
+
+        if cls._instance.name == args[0]:
+            # names are the same
+            new_level = args[1] if len(args) > 1 else kwargs.get("level", logging.INFO)
+            if cls._instance.level == new_level:
+                # level is also the same, can return the current instance
+                return cls._instance
+
+        cls._instance = super().__new__(cls)
 
         return cls._instance
 
-    def __init__(self, name: str, level: int = logging.INFO, output_file: Path | None = None) -> None:
+    def __init__(
+        self, name: str, level: int = logging.INFO, output_file: Path | None = None, use_colour: bool = True
+    ) -> None:
         """Initialises the class and creates the new logger based on name and level.
 
         Args:
             name (str): the logger's name
             level (int, optional): the logging level for this logger. Defaults to logging.INFO.
             output_file (Path, optional): the output file for this logger. Defaults to None.
+            use_colour (bool): whether to use colour logging. Defaults to True.
         """
         if not self._logger:
             # set additional logging levels
@@ -70,7 +83,7 @@ class SlomanLogger:
                 self.add_logging_level("VERBOSE", LEVEL_VERBOSE)
             if not hasattr(logging, "TRACE"):
                 self.add_logging_level("TRACE", LEVEL_TRACE)
-            self._logger = self._setup_logger(name, level, output_file)
+            self._logger = self._setup_logger(name, level, output_file, use_colour)
 
         self.name = name
 
@@ -85,7 +98,9 @@ class SlomanLogger:
         return self._logger.level
 
     @staticmethod
-    def _setup_logger(name: str, level: int, output_file: Path | None = None) -> logging.Logger:
+    def _setup_logger(
+        name: str, level: int, output_file: Path | None = None, use_colour: bool = True
+    ) -> logging.Logger:
         """Sets up the logger with some standard formatting.
 
         Should only be called internally.
@@ -94,6 +109,7 @@ class SlomanLogger:
             name (str): name of the logger
             level (int): the logger's Level
             output_file (Path): the output file. Defaults to None.
+            use_colour (bool): whether to use colour output. Defaults to True.
 
         Returns:
             logging.Logger: the newly created Logger
@@ -101,10 +117,15 @@ class SlomanLogger:
         logger = logging.getLogger(name)
         logger.setLevel(level)
         formatting = "[%(asctime)s] [%(levelname)s] %(funcName)s: %(message)s"
-        colour_formatter = _ColourFormatter(formatting)
-        stream_handler = logging.StreamHandler(stream=sys.stdout)
-        stream_handler.setFormatter(colour_formatter)
-        logger.addHandler(stream_handler)
+
+        str_name: str = f"{name}_stream_handler"
+        if not any(handler.name == str_name for handler in logger.handlers):
+            # only bother doing this if we haven't already created our stream handler
+            colour_formatter = _ColourFormatter(formatting) if use_colour else logging.Formatter(formatting)
+            stream_handler = logging.StreamHandler(stream=sys.stdout)
+            stream_handler.setFormatter(colour_formatter)
+            stream_handler.name = str_name
+            logger.addHandler(stream_handler)
 
         if output_file:
             # add basic file handler
@@ -125,6 +146,9 @@ class SlomanLogger:
                 class returned by `logging.getLoggerClass()` (usually just `logging.Logger`).
             method_name (str): the name of the method to set. If not specified, `name.lower()` is
                 used.
+
+        Raises:
+            AttributeError: raised when we have an existing level
 
         To avoid accidental clobberings of existing attributes, this method will
         raise an `AttributeError` if the level name is already an attribute of the
@@ -163,14 +187,14 @@ class SlomanLogger:
 
         def log_to_root(message: str, *args: tuple[any], **kwargs: dict[str, any]) -> None:
             """Log to root wrapper."""
-            logging.log(num, message, *args, **kwargs)
+            logging.log(num, message, *args, **kwargs)  # noqa: LOG015
 
         def cls_log(self: "SlomanLogger", message: str, *args: tuple[any], **kwargs: dict[str, any]) -> None:
             """Logging method for SlomanLogger that's named after the method name."""
             getattr(self.logger, method_name)(message, *args, stacklevel=3, **kwargs)
 
         logging.addLevelName(num, name)
-        setattr(logging, name, num)
+        setattr(logging, name.upper(), num)
         setattr(logging.getLoggerClass(), method_name, log_for_level)
         setattr(logging, method_name, log_to_root)
         setattr(SlomanLogger, method_name, cls_log)
@@ -229,7 +253,7 @@ class SlomanLogger:
         Args:
             message (str): the message to log
         """
-        self.logger.exception(message, *args, stacklevel=2, **kwargs)
+        self.logger.error(message, *args, stacklevel=2, **kwargs)
 
     def critical(self, message: str, *args: tuple[any], **kwargs: dict[str, any]) -> None:
         """logging.Logger.critical wrapper.

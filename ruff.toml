@@ -1,5 +1,5 @@
 
-target-version = "py312"
+target-version = "py313"
 line-length = 120
 
 [lint]
@@ -10,9 +10,8 @@ preview = true
 select = ["ALL"]
 ignore = [
     # ruleset ignores
-    "AIR", "BLE", "DJ", "DTZ", "EM", "FA", "FBT", "FIX", "INP", "ISC", "NPY", "PD", "PGH", "PTH", "SLOT", "T10", "T20", 
+    "AIR", "BLE", "DJ", "DTZ", "EM", "FA", "FBT", "FIX", "INP", "ISC", "NPY", "PD", "PGH", "PTH", "SLOT", "T10", "T20",
     # specific rule ignores
-    "ANN101", # missing-type-self: happy for self to not have type annotations
     "COM812", # missing-trailing-comma: ruff-format wants this disabled
     "CPY001", # missing-copyright-notice: not interested in forcing this
     "D301",   # escape-sequence-in-docstring: too many false positives
